@@ -22,12 +22,20 @@ class IglwBase(BaseModel):
     )
 
 
-class Pagination(IglwBase):
-    """Pagination base model."""
+class PaginationMeta(IglwBase):
+    """Pagination counts and positioning."""
 
     total: int
     page: int
-    per_page: int
+    page_size: int
+
+
+class PaginationState(IglwBase):
+    """Pagination navigation state."""
+
+    has_next: bool
+    has_previous: bool
+    message: Optional[str] = None
 
 
 class QueryBase(IglwBase):

@@ -12,6 +12,5 @@ class AuthenticationMiddleware(BaseHTTPMiddleware):
     async def dispatch(
         self, request: Request, call_next: Callable[[Request], Awaitable[Response]]
     ) -> Response:
-        # Implement your authentication logic here
         response = await call_next(request)
         return response

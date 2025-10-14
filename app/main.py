@@ -6,6 +6,4 @@ from contextlib import asynccontextmanager
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Initialize resources here
     yield
-    # Cleanup resources here
