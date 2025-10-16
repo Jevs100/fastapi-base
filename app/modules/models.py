@@ -6,7 +6,7 @@ from pydantic import BaseModel, SecretStr, ConfigDict
 from fastapi import Query
 
 
-class IglwBase(BaseModel):
+class AppSchema(BaseModel):
     """Base Pydantic model with shared config for Dispatch models."""
 
     model_config: ClassVar[ConfigDict] = ConfigDict(
@@ -22,7 +22,7 @@ class IglwBase(BaseModel):
     )
 
 
-class PaginationMeta(IglwBase):
+class PaginationMeta(AppSchema):
     """Pagination counts and positioning."""
 
     total: int
@@ -30,7 +30,7 @@ class PaginationMeta(IglwBase):
     page_size: int
 
 
-class PaginationState(IglwBase):
+class PaginationState(AppSchema):
     """Pagination navigation state."""
 
     has_next: bool
@@ -38,7 +38,7 @@ class PaginationState(IglwBase):
     message: Optional[str] = None
 
 
-class QueryBase(IglwBase):
+class QueryBase(AppSchema):
     """Base class for lead query parameters."""
 
     page: int = Query(1, ge=1)
