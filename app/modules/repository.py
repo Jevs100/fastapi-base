@@ -1,6 +1,6 @@
 """Base repository class."""
 
-from typing import Generic, TypeVar, Sequence
+from typing import Generic, Optional, TypeVar, Sequence
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from .base import Base
@@ -13,9 +13,9 @@ class BaseRepository(Generic[T]):
 
     model: type[T]
 
-    async def get_all(self, db: AsyncSession) -> Sequence[T]:
+    async def get(self, db: AsyncSession, limit: Optional[int] = 100) -> Sequence[T]:
         """Get all records of the model."""
-        result = await db.execute(select(self.model).limit(100))
+        result = await db.execute(select(self.model).limit(limit))
         return result.scalars().all()
 
     async def get_paginated(

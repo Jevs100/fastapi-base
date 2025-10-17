@@ -9,7 +9,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sess
 from sqlalchemy.orm import declarative_base
 
 
-class IglwMysqlManager:
+class AppMysqlManager:
     """This class manages the database connection"""
 
     pool_logger: bool
